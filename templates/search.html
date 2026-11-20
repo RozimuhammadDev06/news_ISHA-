@@ -1,0 +1,139 @@
+
+{% extends 'base.html' %}
+{% block  content %}
+{% load static %}
+<body>
+
+	<nav class="navbar">
+  	<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><img src="img/logo.png" alt=""></a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<i class="fa fa-close"></i>
+				</button>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">экономика</a></li>
+					<li><a href="#">политика</a></li>
+					<li><a href="#">общество</a></li>
+					<li><a href="#">культура</a></li>
+					<li><a href="#">спорт</a></li>
+					<li><a href="#">в мире</a></li>
+					<li><a href="#">нно</a></li>
+				</ul>
+
+			</div>
+		</div>
+	</nav>
+	<a href="#" class="bigrek"></a>
+	<div class="container wrapper">
+		<div class="longrek"></div>
+		<div class="clearfix"></div>
+		
+		<ol class="breadcrumb">
+			<li><a href="#">Главная</a></li>
+			<li class="active">Политика</li>
+		</ol>
+		<div class="row">
+			<div class="col-md-8 col-xs-12">
+				<div class="cat_title">{% if search %} Sizning sorovingiz boyicha {{ page_obj.paginator.count }} ta natija topildi {% else %} Yanglik qidrish {% endif %}</div>
+				<div class="search_box">
+					<form action="{% url 'src' %}">
+						<div class="input-group">
+							<input type="text" name="search" value="{{ search }}" placeholder="Qidruv">
+							<button class="btn submit"><i class="fa fa-search"></i></button>
+						</div>
+					</form>
+				</div>
+				<div class="news_box">
+					{% for i in page_obj %}
+					<div class="cat_news">
+						
+						{% if i.image %}<div class="cat_img"><img src="{{ i.image.url }}" alt="{{ i.title }}"></div>{% endif %}
+						<a href="#">{{ i.title }}</a>
+						<p>{{ i.short_desc }}</p>
+						<span class="date">12.01.2017</span>
+						<span class="news_type"><i class="fa fa-pencil"></i> Общество</span>
+					</div>	
+					{% endfor %}
+
+					{% if page_obj.has_other_pages %}
+					<nav aria-label="Qidiruv sahifalari">
+						<ul class="pagination">
+							{% if page_obj.has_previous %}
+							<li>
+								<a href="?search={{ search|urlencode }}&amp;page={{ page_obj.previous_page_number }}" aria-label="Oldingi sahifa">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li>
+							{% endif %}
+							{% for number in page_obj.paginator.page_range %}
+							<li{% if page_obj.number == number %} class="active"{% endif %}><a href="?search={{ search|urlencode }}&amp;page={{ number }}">{{ number }}</a></li>
+							{% endfor %}
+							{% if page_obj.has_next %}
+							<li>
+								<a href="?search={{ search|urlencode }}&amp;page={{ page_obj.next_page_number }}" aria-label="Keyingi sahifa">
+									<span aria-hidden="true">&raquo;</span>
+								</a>
+							</li>
+							{% endif %}
+						</ul>
+					</nav>											
+					{% endif %}
+				</div>
+			</div>
+
+				<div class="news_box rek">
+					<div class="rek_right">
+						
+					</div>
+				</div>
+				<div class="subscribe">
+					<div class="title">Подписывайся на <b>1news.uz</b></div>
+					<form action="">
+						<div class="input-group">
+							<input type="text" name="email" placeholder="Email">
+							<button class="submit">Подписываться</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="foot_about">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-xs-12"><img src="{% static  'img/logo.png' %}" alt="" class="logo"></div>
+				<div class="col-md-6 col-xs-12">
+					<div class="title">О нас</div>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec</p>
+				</div>
+				<div class="col-md-3 col-xs-12 text-right">
+					<ul class="social">
+						<li><a href="#"><span class="fa fa-facebook-f"></span></a></li>
+						<li><a href="#"><span class="fa fa-twitter"></span></a></li>
+						<li><a href="#"><span class="fa fa-linkedin"></span></a></li>
+						<li><a href="#"><span class="fa fa-telegram"></span></a></li>
+						<li><a href="#"><span class="fa fa-google-plus"></span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	
+	
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
+
+</body>
+{% endblock %}

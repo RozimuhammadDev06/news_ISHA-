@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %} | Yangiliklar</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body>
+    <header class="auth-header">
+        <a class="brand" href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt="Yangiliklar — bosh sahifa"></a>
+        <a class="back-link" href="{% url 'home' %}">← Bosh sahifaga</a>
+    </header>
+    <main class="auth-layout">
+        <aside class="auth-intro">
+            <span class="eyebrow">SIZNING YANGILIKLAR OLAMINGIZ</span>
+            <h1>Har kuni.<br> Har bir muhim<br> <span>yangilik.</span></h1>
+            <p>Yurtimiz va jahondagi eng so‘nggi voqealardan xabardor bo‘ling.</p>
+            <div class="intro-bottom"><span class="status-dot"></span> Yangiliklar bilan bir qadam oldinda</div>
+        </aside>
+        <section class="auth-card" aria-labelledby="form-title">
+            {% block form_content %}{% endblock %}
+        </section>
+    </main>
+    <footer class="auth-footer">Yangiliklar portali · Xabardor bo‘ling.</footer>
+</body>
+</html>

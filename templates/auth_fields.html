@@ -1,0 +1,13 @@
+{% if form.non_field_errors %}
+<div class="form-alert" role="alert">{{ form.non_field_errors }}</div>
+{% endif %}
+<div class="form-grid">
+    {% for field in form %}
+    <div class="form-field{% if field.name == 'password' or field.name == 'password_conf' or field.name == 'location' %} full-width{% endif %}">
+        <label for="{{ field.id_for_label }}">{{ field.label }}{% if not field.field.required %} <span class="optional">(ixtiyoriy)</span>{% endif %}</label>
+        {{ field }}
+        {% if field.help_text %}<p class="field-help" id="{{ field.auto_id }}_helptext">{{ field.help_text }}</p>{% endif %}
+        {% if field.errors %}<div class="field-errors" id="{{ field.auto_id }}_error" role="alert">{{ field.errors }}</div>{% endif %}
+    </div>
+    {% endfor %}
+</div>

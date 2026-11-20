@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<nav class="navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#category-menu" aria-expanded="false" aria-label="Menyu">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt="Bosh sahifa"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="category-menu">
+            <ul class="nav navbar-nav">
+                {% for i in ctg %}
+                <li{% if category.pk == i.pk %} class="active"{% endif %}><a href="{% url 'ctg' i.slug %}">{{ i.cat_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container wrapper">
+    <ol class="breadcrumb">
+        <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
+        <li class="active">{{ category.cat_name|default:"Barcha yangiliklar" }}</li>
+    </ol>
+    <div class="row">
+        <div class="col-md-8 col-xs-12">
+            <div class="cat_title">{{ category.cat_name|default:"Barcha yangiliklar" }}</div>
+            <div class="news_box">
+                {% for i in page_obj %}
+                <div class="cat_news">
+                    {% if i.image %}<div class="cat_img"><img src="{{ i.image.url }}" alt="{{ i.title }}" loading="lazy"></div>{% endif %}
+                    <a href="{% url 'view' %}">{{ i.title }}</a>
+                    <p>{{ i.short_desc }}</p>
+                    <span class="date">{{ i.created_at|date:"d.m.Y" }}</span>
+                    <span class="news_type"><i class="fa fa-pencil"></i> {{ i.category.cat_name }}</span>
+                    <span class="date"><i class="fa fa-eye"></i> {{ i.views }}</span>
+                </div>
+                {% empty %}
+                <p>Bu kategoriyada hozircha yangiliklar mavjud emas.</p>
+                {% endfor %}
+                {% if page_obj.has_other_pages %}
+                <nav aria-label="Yangilik sahifalari">
+                    <ul class="pagination">
+                        {% if page_obj.has_previous %}<li><a href="?page={{ page_obj.previous_page_number }}" aria-label="Oldingi sahifa">&laquo;</a></li>{% endif %}
+                        {% for number in page_obj.paginator.page_range %}
+                        <li{% if page_obj.number == number %} class="active"{% endif %}><a href="?page={{ number }}">{{ number }}</a></li>
+                        {% endfor %}
+                        {% if page_obj.has_next %}<li><a href="?page={{ page_obj.next_page_number }}" aria-label="Keyingi sahifa">&raquo;</a></li>{% endif %}
+                    </ul>
+                </nav>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="head_title">Ko‘p o‘qilganlar</div>
+            <div class="news_box">
+                <ul class="list_news">
+                    {% for i in popular_news %}
+                    <li>
+                        {% if i.image %}<div class="list_img"><img src="{{ i.image.url }}" alt="{{ i.title }}" loading="lazy"></div>{% endif %}
+                        <a href="{% url 'view' %}">{{ i.title }}</a>
+                        <span class="date">{{ i.views }} marta o‘qilgan</span>
+                    </li>
+                    {% empty %}<li>Hozircha yangiliklar mavjud emas.</li>{% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}

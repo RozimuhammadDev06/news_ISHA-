@@ -1,0 +1,43 @@
+@font-face{font-family:Ubuntu;src:url('../fonts/Ubuntu-R.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:Ubuntu;src:url('../fonts/Ubuntu-B.ttf') format('truetype');font-weight:700;font-display:swap}
+*{box-sizing:border-box}
+body{margin:0;background:#f3f5f8;color:#172132;font-family:Ubuntu,Arial,sans-serif;line-height:1.5}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:3px solid #2971be;outline-offset:4px}
+.auth-header{max-width:1180px;margin:auto;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand img{display:block;max-width:160px;max-height:54px;object-fit:contain}
+.back-link{font-size:14px;color:#526176}
+.back-link:hover{color:#b0222d}
+.auth-layout{max-width:1120px;margin:24px auto 40px;display:grid;grid-template-columns:1fr 1.15fr;align-items:start;gap:64px;padding:0 32px}
+.auth-intro{padding:62px 0;position:sticky;top:24px}
+.eyebrow,.card-eyebrow{font-size:11px;letter-spacing:2px;font-weight:700;color:#b0222d}
+.auth-intro h1{font-size:clamp(36px,4.5vw,58px);line-height:1.12;letter-spacing:-2px;margin:26px 0}
+.auth-intro h1 span{color:#b0222d}
+.auth-intro p{max-width:310px;color:#687487;font-size:17px;line-height:1.8}
+.intro-bottom{display:flex;align-items:center;gap:10px;margin-top:72px;font-size:12px;color:#687487}
+.status-dot{width:8px;height:8px;background:#b0222d;border-radius:50%;flex-shrink:0}
+.auth-card{background:#fff;border:1px solid #e2e6ed;border-radius:20px;box-shadow:0 16px 45px #14243c08;padding:36px}
+.auth-card h2{font-size:28px;letter-spacing:-.7px;line-height:1.2;margin:12px 0}
+.card-description{color:#687487;font-size:14px;margin:0 0 28px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 16px}
+.form-field{min-width:0}
+.full-width,.login-form .form-field{grid-column:1/-1}
+.form-field label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}
+.optional{font-size:11px;color:#778294;font-weight:400}
+.auth-input{display:block;width:100%;min-height:46px;border:1px solid #d7dfe9;border-radius:8px;background:#fbfcfe;color:#172132;padding:11px 12px;font:inherit;font-size:14px;transition:border-color .15s,box-shadow .15s}
+.auth-input:focus{outline:none;border-color:#b0222d;box-shadow:0 0 0 3px #b0222d15;background:#fff}
+.auth-input[aria-invalid=true]{border-color:#b0222d}
+.field-help{font-size:12px;color:#778294;margin:7px 0 0}
+.field-errors,.form-alert{font-size:12px;color:#a21c28}
+.field-errors ul,.form-alert ul{list-style:none;padding:0;margin:7px 0 0}
+.form-alert{background:#fff0f0;border:1px solid #f3d2d5;border-radius:8px;padding:12px 14px;margin-bottom:20px}
+.form-alert ul{margin:0}
+.submit-button{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;min-height:48px;border:0;border-radius:8px;background:#b0222d;color:#fff;margin-top:26px;padding:12px 18px;font:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:background .15s}
+.submit-button:hover{background:#941b24}
+.submit-button span{font-size:21px;line-height:1}
+.auth-switch{text-align:center;font-size:13px;color:#687487;padding-top:22px;margin:26px 0 0;border-top:1px solid #edf0f4}
+.auth-switch a{color:#b0222d;font-weight:700;white-space:nowrap}
+.auth-switch a:hover{text-decoration:underline}
+.auth-footer{text-align:center;color:#8590a0;font-size:12px;padding:0 20px 24px}
+@media(max-width:850px){.auth-layout{gap:32px;grid-template-columns:.8fr 1.2fr}.auth-card{padding:28px}.auth-intro h1{font-size:40px}.intro-bottom{margin-top:40px}}
+@media(max-width:640px){.auth-header{padding:20px}.brand img{max-width:120px;max-height:40px}.back-link{font-size:12px}.auth-layout{display:block;margin:4px auto 28px;padding:0 16px;max-width:480px}.auth-intro{position:static;padding:16px 8px 24px}.auth-intro h1{font-size:34px;letter-spacing:-1px;margin:12px 0}.auth-intro h1 br{display:none}.auth-intro h1 br:after{content:' '}.auth-intro p{font-size:14px;margin:0;max-width:100%}.intro-bottom{display:none}.eyebrow{font-size:10px}.auth-card{padding:26px 22px;border-radius:16px}.auth-card h2{font-size:26px}.form-grid{grid-template-columns:1fr}.form-field{grid-column:1/-1}.auth-switch{line-height:1.9}}
